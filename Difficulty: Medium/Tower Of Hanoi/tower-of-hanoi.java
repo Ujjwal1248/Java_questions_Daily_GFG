@@ -1,17 +1,17 @@
 class Solution {
-    public int count = 0;
+    public int counter = 0;
     public int towerOfHanoi(int n, int from, int to, int aux) {
         // code here
-        number(n,from, aux, to);
-        return count;
+        helper(n, from, to, aux);
+        return counter;
     }
-    public void number(int n, int src, int helper, int dest){
+    public void helper(int n, int src, int dest, int helper){
         if(n == 1){
-            count++;
+            counter++;
             return;
         }
-        number(n-1, src, dest, helper);
-        count++;
-        number(n-1, helper, src, dest);
+        helper(n-1, src, helper, dest);
+        counter++;
+        helper(n-1, helper, dest, src);
     }
 }
