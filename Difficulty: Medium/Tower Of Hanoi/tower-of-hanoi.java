@@ -5,13 +5,18 @@ class Solution {
         helper(n, from, to, aux);
         return counter;
     }
-    public void helper(int n, int src, int dest, int helper){
-        if(n == 1){
+    public void helper(int n, int src, int dest, int helper) {
+        
+        if(n==1){
             counter++;
+            
             return;
         }
+        
         helper(n-1, src, helper, dest);
         counter++;
+        
         helper(n-1, helper, dest, src);
     }
+    
 }
