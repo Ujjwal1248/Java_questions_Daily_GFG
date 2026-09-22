@@ -1,29 +1,32 @@
 class Solution {
     class Item{
-        int val, wt;
+        int val;
+        int wt;
         double ratio;
         Item(int val, int wt){
             this.val = val;
             this.wt = wt;
-            this.ratio = (double) val/wt;
+            this.ratio = (double)val/wt;
         }
     }
     public double fractionalKnapsack(int[] val, int[] wt, int capacity) {
         // code here
-        Item[] item = new Item[val.length];
+        int n = val.length;
+        Item[] items = new Item[n];
         for(int i = 0; i < val.length; i++){
-            item[i] = new Item(val[i], wt[i]);
+            items[i] = new Item(val[i], wt[i]);
         }
-        Arrays.sort(item, (a, b) -> Double.compare(b.ratio, a.ratio));
+        Arrays.sort(items, (a,b)->Double.compare(b.ratio , a.ratio));
         
-        double total = 0.0;
-        for(int i = 0;i < val.length; i++){
-            if(capacity >= item[i].wt){
-                total += item[i].val;
-                capacity -= item[i].wt;
+        double total = 0;
+        
+        for(Item item : items){
+            if(capacity >= item.wt){
+                capacity -= item.wt;
+                total+= item.val;
             }
             else{
-                total += capacity * item[i].ratio;
+                total += item.ratio*capacity;
                 break;
             }
         }
