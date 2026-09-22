@@ -3,20 +3,20 @@ class Solution {
         //  code here
         Arrays.sort(arr);
         Arrays.sort(dep);
-        int i = 1, j= 0;
-        int count = 1, maxCount = 1;
+        int i = 1, j = 0;
+        int c = 1, mC = 1;
         int n = arr.length;
         while(i < n && j < n){
-            if(arr[i] <= dep[j]){
-                count++;
-                i++;
-            }
-            else{
-                count --;
+            if(arr[i] > dep[j]){
+                c--;
                 j++;
             }
-            maxCount = Math.max(maxCount, count);
+            else{
+                c++;
+                i++;
+            }
+            mC = Math.max(mC, c);
         }
-        return maxCount;
+        return mC;
     }
 }
